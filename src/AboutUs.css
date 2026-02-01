@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Hind:wght@400;500;600&family=Inter:wght@300;400&display=swap');
+
+.story-container {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #050000; /* Deep black-red base */
+}
+
+/* --- THE INTERACTIVE CANVAS --- */
+.interactive-bg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* --- VIDEO LAYER --- */
+.story-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 101%;
+  min-height: 101%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  filter: brightness(0.2) contrast(1.5) saturate(0.5);
+  opacity: 0.6;
+}
+
+.story-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(
+    circle, 
+    transparent 10%, 
+    rgba(0,0,0,0.6) 60%, 
+    rgba(0,0,0,0.9) 100%
+  );
+  pointer-events: none;
+}
+
+/* --- CONTENT BODY --- */
+.story-body {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: #fff;
+  max-width: 850px;
+  padding: 40px;
+  animation: contentFadeIn 2s ease-out forwards;
+}
+
+.story-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4.0rem;
+  text-transform: uppercase;
+  color: #d1d1d1;
+  text-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
+  margin-bottom: 30px;
+  animation: titleHeartbeat 4s infinite ease-in-out;
+}
+
+.story-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #f0f0f0;
+  padding: 40px;
+  background: rgba(10, 0, 0, 0.7); /* Blood-tinted dark glass */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 0, 0, 0.15);
+  border-left: 5px solid #660000;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: default;
+}
+
+.story-text:hover {
+  background: rgba(30, 0, 0, 0.8);
+  border-left: 5px solid #ff0000;
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.15), 0 30px 60px rgba(0,0,0,0.9);
+}
+
+/* --- THE VEIN OVERLAY --- */
+.vein-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.4;
+  background-image: repeating-radial-gradient(
+    circle at 50% 50%, 
+    rgba(40, 0, 0, 0.8) 0%, 
+    transparent 20%, 
+    rgba(20, 0, 0, 0.4) 40%
+  );
+  background-size: 200% 200%;
+  mix-blend-mode: multiply;
+  animation: pulseVeins 10s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* --- UPDATED STORY NAVIGATION (No Box) --- */
+.story-nav {
+  position: fixed;
+  top: 0;
+  right: 0; 
+  padding: 40px 60px;
+  z-index: 100;
+}
+
+.story-back-link {
+  font-family: 'Inter', sans-serif;
+  color: rgba(255, 255, 255, 0.5); 
+  text-decoration: none !important; /* Forces removal of any default lines */
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  font-weight: 400;
+  transition: all 0.4s ease;
+  position: relative;
+  border: none !important;   /* REMOVES THE BOX */
+  padding: 0 !important;      /* REMOVES THE BOX PADDING */
+}
+
+/* Red underline effect */
+.story-back-link::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 0;
+  width: 0%;
+  height: 1px;
+  background: #ff4d4d;
+  transition: width 0.3s ease;
+}
+
+.story-back-link:hover {
+  color: #ffffff;
+  background: transparent !important; /* Ensures no white box on hover */
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+.story-back-link:hover::after {
+  width: 100%;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes pulseVeins {
+  0%, 100% { transform: scale(1); filter: brightness(0.5) contrast(1.2); }
+  50% { transform: scale(1.05); filter: brightness(0.8) contrast(1.5); }
+}
+
+
+
+@keyframes contentFadeIn {
+  from { opacity: 0; transform: translateY(40px); filter: blur(15px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
