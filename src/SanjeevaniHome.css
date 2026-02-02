@@ -133,7 +133,6 @@
   background-attachment: fixed;
   -webkit-background-clip: text;
   background-clip: text;
-  text-shadow:black 0px 0px 10px;
 }
 
 .tagline {
