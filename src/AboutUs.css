@@ -65,11 +65,13 @@
   font-size: 4.0rem;
   text-transform: uppercase;
   color: #d1d1d1;
-  text-shadow: 0 0 25px rgba(255, 0, 0, 0.6);
   margin-bottom: 30px;
   animation: titleHeartbeat 4s infinite ease-in-out;
 }
-
+.story-title:hover {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.195);
+}
 .story-text {
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;

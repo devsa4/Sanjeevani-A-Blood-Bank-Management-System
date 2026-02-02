@@ -10,21 +10,56 @@
   display: flex;
   flex-direction: column;
 }
+/* --- Background Settings --- */
+/* --- Background & Core Structure --- */
+.App {
+  position: relative;
+  overflow-x: hidden;
+}
+/* --- FULL SCREEN WIPE OVERLAY --- */
+.pip-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: #000;
+  
+  /* Initial State: Wiped out (hidden at the bottom) */
+  /* inset(top, right, bottom, left) */
+  clip-path: inset(100% 0 0 0); 
+  opacity: 0;
+  pointer-events: none;
+  
+  /* Slow, smooth wipe transition */
+  transition: 
+    clip-path 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+    opacity 0.8s ease-in-out;
+}
 
-/* --- FIXED VIDEO (The Fix) --- */
+/* Active State: Wipes Up to reveal full video */
+.pip-box.active {
+  opacity: 1;
+  clip-path: inset(0% 0 0 0);
+  pointer-events: auto;
+}
+
+.pip-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Base styles to keep everything else clean */
 .background-video {
   position: fixed;
   inset: -50px;
   width: calc(100% + 100px);
   height: calc(100% + 100px);
   object-fit: cover;
-  z-index: -2; /* Behind everything */
-  filter: brightness(0.9);
-  transform: translate(calc(var(--x) / -60), calc(var(--y) / -60));
-  transition: transform 0.2s ease-out;
-  pointer-events: none; /* Let clicks pass through */
+  z-index: -2; 
 }
-
 .vignette-layer {
   position: fixed;
   inset: 0;
@@ -41,7 +76,7 @@
   justify-content: center;
   padding-left: 10%;
   position: relative;
-  z-index: 10;
+  z-index: 1;
   animation: fadeInUp 1.5s ease-out forwards;
 }
 
@@ -50,7 +85,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  
+  text-shadow: #000000;
 }
 
 .sanjeevani-icon {
@@ -60,9 +95,14 @@
   transition: all 0.3s ease;
   animation: iconHeartbeat 1.5s infinite ease-in-out;
   cursor: pointer;
-   color: #ff0000;
-  filter: drop-shadow(0 0 20px #ff0000) drop-shadow(0 0 40px #aa0000) brightness(1.5);
+   color: #730000;
+  filter: drop-shadow(0 0 20px #000000) drop-shadow(0 0 40px #020000) brightness(1.5);
   transform: scale(1.2) rotate(-5deg);
+}
+.sanjeevani-icon:hover {
+  color: rgba(255, 255, 255, 0.323);
+  filter: drop-shadow(0 0 30px #ffffff) drop-shadow(0 0 50px #ffffff) brightness(1.8);
+  transform: scale(1.25) rotate(0deg);
 }
 
 
@@ -128,24 +168,33 @@
   font-family: 'Hind', sans-serif;
   font-size: 2.8rem;
   margin: 0;
-  color: rgba(255, 0, 0, 0.315);
+  color: rgba(255, 0, 0, 0.575);
   background: radial-gradient(circle 100px at var(--x) var(--y), #ffffff 0%, transparent 200%);
   background-attachment: fixed;
   -webkit-background-clip: text;
   background-clip: text;
 }
-
 .tagline {
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
   text-transform: uppercase;
   border-left: 2px solid #ff4d4d;
-  padding: 5px 20px;
+  padding: 0px 10px;
   color: white;
   opacity: 0.5;
   animation: flicker 5s infinite;
 }
-
+.tagline:hover {
+  opacity: 1;
+  text-shadow: 0 0 10px #ff0000;
+}
+.vignette-layer {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, transparent 0%, black 100%);
+  z-index: -1;
+  pointer-events: none;
+}
 /* --- SCROLL PROMPT --- */
 .scroll-prompt {
   position: absolute;
@@ -157,6 +206,10 @@
   font-family: 'Inter', sans-serif;
   opacity: 0.6;
 }
+.scroll-prompt:hover {
+  opacity: 1;
+  text-shadow: #fffbfb35;
+}
 
 .pulse-icon-wrapper {
   position: relative;
@@ -166,14 +219,18 @@
   margin-top: 15px;
   color: #ff0000;
 }
+.pulse-icon-wrapper:hover {
+  color: #ffffff;
+  filter: drop-shadow(0 0 30px #ffffff83)  brightness(1.8);
+  transform: scale(1.25) rotate(0deg);
 
+}
 .blood-icon {
   width: 30px;
   height: 30px;
-  filter: drop-shadow(0 0 8px #ff0000);
+  filter: drop-shadow(0 0 8px #aa0000);
   z-index: 2;
 }
-
 .pulse-ring {
   position: absolute;
   width: 40px;
