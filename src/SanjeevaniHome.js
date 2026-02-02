@@ -31,7 +31,7 @@ function SanjeevaniHome() {
         <source src="/rbc_background.mp4" type="video/mp4" />
       </video>
 
-      <div className="vignette-layer"></div>
+    
 
       <div className="App-header">
         <h1 className="title spotlight-red">
@@ -43,7 +43,7 @@ function SanjeevaniHome() {
         
         <div className="info-block">
           <div className="subtitle-wrapper">
-            <h2 className="subtitle spotlight-white">संजीवनी</h2>
+            <h2 className="subtitle spotlight-white"><i><b>संजीवनी</b></i></h2>
           </div>
           <p className="tagline">A drop of hope, a river of life</p>
         </div>

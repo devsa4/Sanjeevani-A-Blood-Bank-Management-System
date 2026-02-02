@@ -19,7 +19,7 @@
   height: calc(100% + 100px);
   object-fit: cover;
   z-index: -2; /* Behind everything */
-  filter: brightness(0.3);
+  filter: brightness(0.9);
   transform: translate(calc(var(--x) / -60), calc(var(--y) / -60));
   transition: transform 0.2s ease-out;
   pointer-events: none; /* Let clicks pass through */
@@ -50,6 +50,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  
 }
 
 .sanjeevani-icon {
@@ -71,7 +72,7 @@
   text-transform: uppercase;
   margin: 0;
   line-height: 0.8;
-  color: rgba(255, 255, 255, 0.1); 
+  color: rgba(255, 255, 255, 0.336); 
   background: radial-gradient(circle 150px at var(--x) var(--y), #ff0000 0%, transparent 100%);
   background-attachment: fixed;
   -webkit-background-clip: text;
@@ -127,11 +128,12 @@
   font-family: 'Hind', sans-serif;
   font-size: 2.8rem;
   margin: 0;
-  color: rgba(255, 77, 77, 0.2);
-  background: radial-gradient(circle 100px at var(--x) var(--y), #ffffff 0%, transparent 100%);
+  color: rgba(255, 0, 0, 0.315);
+  background: radial-gradient(circle 100px at var(--x) var(--y), #ffffff 0%, transparent 200%);
   background-attachment: fixed;
   -webkit-background-clip: text;
   background-clip: text;
+  text-shadow:black 0px 0px 10px;
 }
 
 .tagline {
